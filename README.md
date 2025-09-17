@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend Developer Recruitment Task
+
+## Overview
+This is a practical coding assessment for senior frontend developers. You'll be implementing search functionality for a NextJS application that fetches data from a public API.
 
 ## Getting Started
 
-First, run the development server:
+1. Clone this repository
+2. Install dependencies: `npm install`
+3. Start the development server: `npm run dev`
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Your Tasks
+
+You need to complete the implementation in `src/components/SearchPage/SearchPage.tsx`. The UI is already built and styled - you just need to implement the functionality.
+
+### 1. API Integration
+**File:** `src/components/SearchPage/SearchPage.tsx`
+**Function:** `searchPosts`
+
+Implement the search functionality using JSONPlaceholder API:
+- **Endpoint:** `https://jsonplaceholder.typicode.com/posts`
+- **Search parameter:** `q` (e.g., `?q=search-term`)
+- **Pagination:** `_page` and `_limit` (e.g., `?_page=1&_limit=10`)
+
+Requirements:
+- Handle loading states (`setLoading`)
+- Handle errors (`setError`)
+- Update posts state (`setPosts`)
+- Support both new searches and pagination
+
+### 2. Auto-Search with Throttling
+**Function:** `handleInputChange` + `useThrottle`
+
+Implement auto-search as the user types with throttling:
+- Search automatically when input changes (no search button)
+- Throttle API calls to prevent excessive requests (suggested: 300ms)
+- Cancel previous pending requests when new search is triggered
+- Only search when input has content (after trim())
+
+### 3. Pagination
+**Function:** `loadMore`
+
+Implement "Load More" functionality:
+- Append new results to existing posts
+- Increment page number
+- Handle "no more results" state (`setHasMore`)
+
+### 4. Bonus Tasks
+If you finish early, consider implementing:
+
+#### Search History Integration
+The app includes an API route at `/api/search-history`. You can:
+- Save successful searches to history (POST)
+- Display recent searches (GET)
+- Add search suggestions
+
+#### Enhanced UX
+- Debounce search input for real-time search
+- Add keyboard shortcuts (Enter to search, Escape to clear)
+- Implement search result highlighting
+
+## API Documentation
+
+### JSONPlaceholder Posts API
+```
+GET https://jsonplaceholder.typicode.com/posts?q=search&_page=1&_limit=10
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Response format:**
+```json
+[
+  {
+    "id": 1,
+    "title": "Post title",
+    "body": "Post content...",
+    "userId": 1
+  }
+]
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Local Search History API
+```
+GET /api/search-history    // Get recent searches
+POST /api/search-history   // Save search
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Evaluation Criteria
 
-## Learn More
+We'll be evaluating:
+1. **Functionality** - Does the search work correctly?
+2. **Code Quality** - Clean, readable, and well-structured code
+3. **Error Handling** - Proper handling of edge cases
+4. **User Experience** - Smooth interactions and feedback
 
-To learn more about Next.js, take a look at the following resources:
+## Tips
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- The UI components and styling are already complete
+- Focus on implementing the core functionality first
+- Ask questions if anything is unclear
+- Use modern React patterns (hooks, functional components)
+- TypeScript types are already defined for the Post interface
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Need Help?
 
-## Deploy on Vercel
+- Check the browser console for any errors
+- The JSONPlaceholder API is free and doesn't require authentication
+- All TODO comments in the code indicate where you need to implement functionality
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Good luck! 🚀
