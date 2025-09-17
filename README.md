@@ -30,11 +30,11 @@ Requirements:
 - Support both new searches and pagination
 
 ### 2. Auto-Search with Throttling
-**Function:** `handleInputChange` + `useThrottle`
+**Function:** `handleInputChange` + lodash `throttle`
 
 Implement auto-search as the user types with throttling:
 - Search automatically when input changes (no search button)
-- Throttle API calls to prevent excessive requests (suggested: 300ms)
+- Use lodash `throttle` to prevent excessive requests (suggested: 300ms)
 - Cancel previous pending requests when new search is triggered
 - Only search when input has content (after trim())
 
@@ -100,6 +100,7 @@ We'll be evaluating:
 - Ask questions if anything is unclear
 - Use modern React patterns (hooks, functional components)
 - TypeScript types are already defined for the Post interface
+- Lodash is already installed - use `import { throttle } from 'lodash'` for throttling
 
 ## Need Help?
 
