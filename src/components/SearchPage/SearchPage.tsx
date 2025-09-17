@@ -13,15 +13,10 @@ interface Post {
 
 export default function SearchPage() {
   const [searchTerm, setSearchTerm] = useState('');
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [posts, setPosts] = useState<Post[]>([]);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState('');
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentPage, setCurrentPage] = useState(1);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [hasMore, setHasMore] = useState(true);
 
   // TODO: Implement throttled search function
@@ -30,7 +25,6 @@ export default function SearchPage() {
   // 2. Use query parameter 'q' for search and '_page' & '_limit' for pagination
   // 3. Be throttled to prevent excessive API calls (suggested: 300ms)
   // 4. Handle loading states and errors
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const searchPosts = async (query: string, page: number = 1) => {
     // CANDIDATE TASK: Implement this function
     console.log('Search function called with:', { query, page });
@@ -96,7 +90,7 @@ export default function SearchPage() {
             <div className={styles.postsList}>
               {/* CANDIDATE TASK: Create custom PostItem component if you prefer, or use the predefined one */}
               {posts.map((post) => (
-                <PostItem key={post.id} post={post} />
+                  <h3 className={styles.postTitle}>{post.title}</h3>
               ))}
             </div>
 
