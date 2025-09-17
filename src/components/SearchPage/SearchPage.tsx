@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import styles from './SearchPage.module.scss';
+import PostItem from './PostItem';
 
 interface Post {
   id: number;
@@ -12,7 +13,7 @@ interface Post {
 
 export default function SearchPage() {
   const [searchTerm, setSearchTerm] = useState('');
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [posts, setPosts] = useState<Post[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState(false);
@@ -29,19 +30,15 @@ export default function SearchPage() {
   // 2. Use query parameter 'q' for search and '_page' & '_limit' for pagination
   // 3. Be throttled to prevent excessive API calls (suggested: 300ms)
   // 4. Handle loading states and errors
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const searchPosts = async (query: string, page: number = 1) => {
     // CANDIDATE TASK: Implement this function
     console.log('Search function called with:', { query, page });
   };
 
-  // TODO: Implement throttle utility function
-  // This should delay function execution and cancel previous pending calls
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const useThrottle = (callback: (...args: unknown[]) => void, _delay: number) => {
-    // CANDIDATE TASK: Implement throttling logic
-    return callback;
-  };
+  // TODO: Implement throttled search using lodash
+  // Import: import { throttle } from 'lodash';
+  // CANDIDATE TASK: Import lodash throttle and create throttled search function
 
   // TODO: Implement load more functionality
   const loadMore = () => {
@@ -51,15 +48,12 @@ export default function SearchPage() {
 
   // TODO: Implement auto-search with throttling
   // This should be called whenever searchTerm changes
-  // Use the throttled searchPosts function to prevent excessive API calls
+  // Use the throttled function to prevent excessive API calls
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchTerm(value);
-    searchPosts(value).catch(console.error)
 
     // CANDIDATE TASK: Implement throttled search on input change
-    // Clear previous results and search with new term
-    // Only search if value has content (trim())
     console.log('Input changed:', value);
   };
 
@@ -100,14 +94,9 @@ export default function SearchPage() {
             </h2>
 
             <div className={styles.postsList}>
+              {/* CANDIDATE TASK: Create custom PostItem component if you prefer, or use the predefined one */}
               {posts.map((post) => (
-                <div key={post.id} className={styles.postItem}>
-                  <h3 className={styles.postTitle}>{post.title}</h3>
-                  <p className={styles.postBody}>{post.body}</p>
-                  <div className={styles.postMeta}>
-                    Post ID: {post.id} | User ID: {post.userId}
-                  </div>
-                </div>
+                <PostItem key={post.id} post={post} />
               ))}
             </div>
 

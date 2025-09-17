@@ -34,11 +34,18 @@ Requirements:
 
 Implement auto-search as the user types with throttling:
 - Search automatically when input changes (no search button)
-- Use lodash `throttle` to prevent excessive requests (suggested: 300ms)
-- Cancel previous pending requests when new search is triggered
 - Only search when input has content (after trim())
+- Import `throttle` from lodash and create throttled search function
 
-### 3. Pagination
+### 3. Custom PostItem Component
+**File:** `src/components/SearchPage/PostItem.tsx` (predefined)
+
+You can either:
+- Create your own PostItem component from scratch
+- Use the predefined PostItem component that's already imported
+- The predefined component includes proper TypeScript interfaces and styling
+- 
+### 4. Pagination
 **Function:** `loadMore`
 
 Implement "Load More" functionality:
@@ -46,7 +53,7 @@ Implement "Load More" functionality:
 - Increment page number
 - Handle "no more results" state (`setHasMore`)
 
-### 4. Bonus Tasks
+### 5. Bonus Tasks
 If you finish early, consider implementing:
 
 #### Search History Integration
