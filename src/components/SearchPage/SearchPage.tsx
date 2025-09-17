@@ -87,12 +87,9 @@ export default function SearchPage() {
               Found {posts.length} result{posts.length !== 1 ? 's' : ''}
             </h2>
 
-            <div className={styles.postsList}>
-              {/* CANDIDATE TASK: Create custom PostItem component if you prefer, or use the predefined one */}
-              {posts.map((post) => (
-                  <h3 className={styles.postTitle}>{post.title}</h3>
-              ))}
-            </div>
+              <div className={styles.postsList}>
+                  {posts.map((post) => <p style={{ color: 'black' }}>{post.title}</p>)}
+              </div>
 
             {hasMore && (
               <button
